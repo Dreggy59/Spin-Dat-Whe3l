@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spin the Wheel</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f9f9f9;
+    }
+    img {
+      width: 200px;
+      margin-top: 20px;
+    }
+    .wheel-container {
+      position: relative;
+      margin: 50px auto;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: conic-gradient(#f39c12 0% 40%, #c0392b 40% 70%, #2ecc71 70% 100%);
+    }
+    .wheel-arrow {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-bottom: 30px solid #000;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .spin-button {
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .spin-button:active {
+      background-color: #2980b9;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<img src="received_586869907149566.png" alt="Cloud Crave Logo">
+<div class="wheel-container">
+  <div class="wheel-arrow"></div>
+</div>
+<button class="spin-button" onclick="spinWheel()">Spin</button>
+<div class="result"></div>
+
+<script>
+  function spinWheel() {
+    const wheel = document.querySelector('.wheel-container');
+    const resultDiv = document.querySelector('.result');
+    const outcomes = ['5', '10', 'None', '5', 'None', '5', '5', 'None'];
+    
+    // Small chance of '10' appearing in outcomes array
+    const result = outcomes[Math.floor(Math.random() * outcomes.length)];
+    
+    const randomDegree = Math.floor(360 * Math.random()) + 720; // Random spin
+    wheel.style.transition = 'transform 3s ease-out';
+    wheel.style.transform = `rotate(${randomDegree}deg)`;
+
+    // Show the result after spin animation
+    setTimeout(() => {
+      resultDiv.textContent = `You won: ${result}`;
+    }, 3000);
+  }
+</script>
+
+</body>
+</html>
